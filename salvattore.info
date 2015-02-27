@@ -1,7 +1,8 @@
 name = Salvattore Views
 description = "Provides a Views plugin for displaying content in a Masonry layout using Salvattore"
 core = 7.x
-package = Masonry
+package = JavaScript
+configure = admin/config/user-interface/salvattore
 
 files[] = views_plugin_style_salvattore.inc
 

@@ -5,6 +5,35 @@
  */
 
 /**
+ * Implements hook_permission().
+ */
+function salvattore_permission() {
+  return array(
+    'manage Salvattore settings' => array(
+      'title' => t('Manage Salvattore settings'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function salvattore_menu() {
+  $items = array();
+
+  $items['admin/config/user-interface/salvattore'] = array(
+    'title' => 'Salvattore Settings',
+    'description' => 'Configure Salvattore',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('salvattore_admin_settings_form'),
+    'access arguments' => array('manage Salvattore settings'),
+    'file' => 'salvattore.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_views_api()
  */
 function salvattore_views_api() {
@@ -21,10 +50,26 @@ function template_preprocess_views_view_salvattore(&$vars) {
   // Get view options
   $view = $vars['view'];
   $options = $vars['options'];
-
-  // Display content in a Masonry layout
-  //$container = '.view-' . drupal_clean_css_identifier($view->name) . '.view-display-id-' . $view->current_display . ' .view-content';
-  //$options['masonry_item_selector'] = '.salvattore-item';
-  //masonry_apply($container, $options);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
+function salvattore_preprocess_page(&$variables) {
+  if (variable_get('salvattore_use_min_js')) {
+    drupal_add_js(drupal_get_path('module', 'salvattore') . '/js/salvattore.min.js', array(
+      'scope' => 'footer',
+    ));
+  } else {
+    drupal_add_js(drupal_get_path('module', 'salvattore') . '/js/salvattore.js', array(
+      'scope' => 'footer',
+    ));
+  }
+
+  if (variable_get('salvattore_load_default_css')) {
+    drupal_add_css(drupal_get_path('module', 'salvattore') . '/css/salvattore_default.css', array(
+      'type' => 'file',
+      'preprocess' => FALSE, // see README
+    ));
+  }
+}
