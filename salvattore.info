@@ -1,0 +1,8 @@
+name = Salvattore Views
+description = "Provides a Views plugin for displaying content in a Masonry layout using Salvattore"
+core = 7.x
+package = Masonry
+
+files[] = views_plugin_style_salvattore.inc
+
+dependencies[] = views
