@@ -10,12 +10,8 @@ class views_plugin_style_salvattore extends views_plugin_style {
   /**
    * Set default options
    */
-  function option_definition() {
-    $options = parent::option_definition();
-
-    $options['class'] = array('default' => '');
-
-    return $options;
+  function options(&$options) {
+    parent::options($options);
   }
 
   /**

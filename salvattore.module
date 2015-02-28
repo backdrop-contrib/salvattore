@@ -24,13 +24,22 @@ function salvattore_menu() {
   $items['admin/config/user-interface/salvattore'] = array(
     'title' => 'Salvattore Settings',
     'description' => 'Configure Salvattore',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('salvattore_admin_settings_form'),
+    'page callback' => 'backdrop_get_form',
+    'page arguments' => array('salvattore_settings_form'),
     'access arguments' => array('manage Salvattore settings'),
     'file' => 'salvattore.admin.inc',
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_autoload_info.
+ */
+function salvattore_autoload_info() {
+  return array(
+    'views_plugin_style_salvattore' => 'views_plugin_style_salvattore.inc',
+  );
 }
 
 /**
@@ -46,7 +55,6 @@ function salvattore_views_api() {
 function template_preprocess_views_view_salvattore(&$vars) {
   // Run preprocess function for unformatted style
   template_preprocess_views_view_unformatted($vars);
-
   // Get view options
   $view = $vars['view'];
   $options = $vars['options'];
@@ -57,17 +65,17 @@ function template_preprocess_views_view_salvattore(&$vars) {
  */
 function salvattore_preprocess_page(&$variables) {
   if (variable_get('salvattore_use_min_js')) {
-    drupal_add_js(drupal_get_path('module', 'salvattore') . '/js/salvattore.min.js', array(
+    backdrop_add_js(backdrop_get_path('module', 'salvattore') . '/js/salvattore.min.js', array(
       'scope' => 'footer',
     ));
   } else {
-    drupal_add_js(drupal_get_path('module', 'salvattore') . '/js/salvattore.js', array(
+    backdrop_add_js(backdrop_get_path('module', 'salvattore') . '/js/salvattore.js', array(
       'scope' => 'footer',
     ));
   }
 
   if (variable_get('salvattore_load_default_css')) {
-    drupal_add_css(drupal_get_path('module', 'salvattore') . '/css/salvattore_default.css', array(
+    backdrop_add_css(backdrop_get_path('module', 'salvattore') . '/css/salvattore_default.css', array(
       'type' => 'file',
       'preprocess' => FALSE, // see README
     ));
