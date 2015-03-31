@@ -11,7 +11,7 @@
 <?php endif; ?>
 <div id="salvattore-grid" data-columns>
 <?php foreach ($rows as $id => $row): ?>
-  <div <?php if ($classes_array[$id]) print 'class="' . $classes_array[$id] . '"'; ?>>
+  <div <?php if ($row_classes[$id]) print 'class="' . implode(' ', $row_classes[$id]) . '"'; ?>>
     <?php print $row; ?>
   </div>
 <?php endforeach; ?>
