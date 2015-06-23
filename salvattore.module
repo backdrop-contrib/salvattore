@@ -46,7 +46,11 @@ function salvattore_autoload_info() {
  * Implements hook_views_api()
  */
 function salvattore_views_api() {
-  return array('api' => 3);
+  return array(
+    'api' => '3.0',
+    'path' => backdrop_get_path('module', 'salvattore'),
+    'template_path' => backdrop_get_path('module', 'salvattore'),
+  );
 }
 
 /**
@@ -64,7 +68,7 @@ function template_preprocess_views_view_salvattore(&$vars) {
  * Implements hook_preprocess_page().
  */
 function salvattore_preprocess_page(&$variables) {
-  if (variable_get('salvattore_use_min_js')) {
+  if (config_get('salvattore.settings', 'salvattore_use_min_js')) {
     backdrop_add_js(backdrop_get_path('module', 'salvattore') . '/js/salvattore.min.js', array(
       'scope' => 'footer',
     ));
@@ -74,7 +78,7 @@ function salvattore_preprocess_page(&$variables) {
     ));
   }
 
-  if (variable_get('salvattore_load_default_css')) {
+  if (config_get('salvattore.settings', 'salvattore_load_default_css')) {
     backdrop_add_css(backdrop_get_path('module', 'salvattore') . '/css/salvattore_default.css', array(
       'type' => 'file',
       'preprocess' => FALSE, // see README

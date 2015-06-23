@@ -16,6 +16,8 @@ function salvattore_views_plugins() {
         'help' => t("Display content in a masonry layout using Salvattore."),
         'theme' => 'views_view_salvattore',
         'type' => 'normal',
+        'path' => backdrop_get_path('module', 'salvattore'),
+        'theme path' => backdrop_get_path('module', 'salvattore'),
         'uses row plugin' => TRUE,
         'uses row class' => TRUE,
         'uses grouping' => FALSE,
