@@ -13,7 +13,7 @@ http://github.com/rnmp/salvattore
 Install and enable the module as usual. Then select Salvattore
 as a style plugin in views.
 
-*You are supposed* your own CSS code for your masonries, but in case you are in
+*You are supposed* to write your own CSS code for your masonries, but in case you are in
 a hurry visit the settings page (admin/config/user-interface/salvattore)
 and enable the default CSS file.
 Also, you can use this default CSS file as you base.
@@ -37,3 +37,5 @@ SoLebIch (http://www.solebich.de)
 Salvattore was created by Salvattore developers.
 Rolando Murillo and Giorgio Leveroni
 All credits due to these guys :)
+
+Backdrop port was possible with the help of docwilmot (https://github.com/docwilmot)
